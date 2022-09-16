@@ -62,8 +62,10 @@ function checkAnswer() {
 //get from the calculatedCorrectAnswer, it its true we congratulate user.
     if (isCorrect) {
         alert("Hey! You got it right! :D");
+        incrementScore();
     } else {
         alert(`Awwww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -97,14 +99,26 @@ function calculateCorrectAnswer(){
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
 }
-
+/**
+ * Gets the current score from the DOM and increments it by 1
+ */
+//values are going to be stored under "score-area"
+//++ put before variable so js can get the ID of score then set the innet text to
+//one + old score.
 function incrementScore() {
-
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 }
 
-function incrementWrongAnswer(){
-
+/**
+ * Gets the current tally of incorrect answers from the DOM and increments it by 1
+ */
+function incrementWrongAnswer(){  
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
+
+
 //setting its text content to our number, refers back to id's in html
 function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
