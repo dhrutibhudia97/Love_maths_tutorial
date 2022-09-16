@@ -40,6 +40,8 @@ function runGame(gameType) {
 //then it will display addiiton question, otherwise it will show an error.
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -58,7 +60,7 @@ function checkAnswer() {
     let userAnswer = parseInt(document.getElementById("answer-box").value);
     let calculatedAnswer = calculateCorrectAnswer();
     let isCorrect = userAnswer === calculatedAnswer[0];
-//we cehck the answer we receive from the DOM, we compare it to correct answer we 
+//we check the answer we receive from the DOM, we compare it to correct answer we 
 //get from the calculatedCorrectAnswer, it its true we congratulate user.
     if (isCorrect) {
         alert("Hey! You got it right! :D");
@@ -94,7 +96,10 @@ function calculateCorrectAnswer(){
 //element2 will be gameType we want to run next, which will be an addition game.
     if(operator === "+") {
         return [operand1 + operand2, "addition"];
-    } else {
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
+    }
+        else {
         alert(`Unimplemented operator ${operator}`)
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
@@ -131,7 +136,10 @@ function displaySubtractQuestion(){
 
 }
 
-function displayMultiplyQuestion(){
+function displayMultiplyQuestion(operand1, operand2){
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";
 
 }
 
