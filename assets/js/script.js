@@ -18,6 +18,15 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
+//add event listener, listening for a keydown event (when a key is pressed)
+//send in an event object , and check property of that event project which is the
+//key property.
+//if enter key was pressed, checkAnswer function is called.
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
     //want the default game to addition to be running when page loads
     runGame("addition");
 })
@@ -28,6 +37,14 @@ document.addEventListener("DOMContentLoaded", function() {
 // the parameter of the funGame function is gameType
 //First we pass the gameType into the function as an argument
 function runGame(gameType) {
+
+//set answer box value to empty string so everything answer is submitted box is emptied
+    document.getElementById("answer-box").value = "";
+    // will make sure cursor in in box, no user doesnt have to click on box to answer.
+    document.getElementById("answer-box").focus();
+    // so cursor is automatically in box when page is loaded so user doesnt have to click it.
+    document.getElementById("answer-box").focus();
+
     //Creates two random numbers between 1 and 25
     // worked this on on dev tools under console tab,
     // want a number between 1 and 25 and Maths.floor rounds numbers down 
